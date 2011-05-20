@@ -1,11 +1,37 @@
-"Hello trappist lovers!"
+Hello and welcome, potential trappist enthusiast! 
 
-This is a bare skeleton of the trappist project codebase.
+A trappist is a type of Belgian beer traditionally brewed by monks. It's also the name of this project because the original plan was to develop a small program to identify and thus "trap" conserved plasmid backbones. If you don't know what that means, don't worry. The point is that it was a lame excuse to have the line "This is Spinal Trap" on a PowerPoint slide 6 months ago. And if you don't know what THAT means you were probably born in the 1990's or later, which is fine. But you should google it, it's a cultural gem of the mid-80's (not a lot of competition there). 
 
-I am currently redesigning and rewriting the fundamentals because the previous
-version was suffering from severe "second system syndrome". So it's really not
-interesting to look at right now.
+Anyhoo. I'm looking for contributors to help develop this project. Because I'm a microbiologist -- I was trained to program mutant bacteria, not computers -- so I have to learn how to do all this as I go, which is fine in terms of education (I'm for it) but it's taking forever. At this rate by the time I get it done the AIs will have taken over and TRAPPIST and I will be sitting in a museum somewhere next to a Mac Classic and a pile of floppies. 
 
-Sorry about that! But come again soon!
+So without further ado, here's a very rough overview of the project specs :
+
+The idea is to build an application that serves as a "workbench" for analysis of genome data. The workbench provides a set of tools/tasks (load sequences, make alignments, search a database, ... all operations batchable) that users can string together into workflows. Some default workflows are provided for common tasks. Advanced users can contribute their own tools/tasks modules and workflows to the community. Users can choose to compose and execute workflows through a CLI or through a simple GUI with a diagram-style visual representation. The output is stored in a database and can be loaded into an interactive data explorer, with the option to output publication-quality vector images. The application includes a form of logging and version control for every step, so that users can run the workflows with different parameters and compare the outputs.
+
+Yes, if you know bioinformatics, it sounds a lot like the Galaxy framework, but cooler. Because it's in Python, not Perl, and it's aimed primarily at regular wetlab biologists who do not have a clue about scripting and still do all their BLAST searches by manually cutting and pasting sequences one by one into a browser window. Some say those people should be shot, some say they should be left to go the way of dinosaurs and microarrays… I say they are the workhorse of experimental biology; it's not their fault they didn't get the right training in school, and don't have the time to learn those skills now because they're too busy doing really cool experimental biology. They are my friends and colleagues and I want to help them. Because I can. It's my superhero power. I'm not the best biologist ever (though I'm pretty well published, thank you), and I'll never be the best programmer ever (I'm shooting for half-decent), but I understand both worlds and that puts me in a rare position to do something useful. 
+
+Ahem. /soapbox
+
+So that's the plan. Now, the development status to date :
+
+Not very advanced. 
+
+The main reason is that I recently decided to rewrite everything from scratch because the previous version was built on bad foundations (severe second system syndrome). I blame PyCon for enlightening me to good practices and endless possibilities. So there's not a lot of code yet, and lots to do. But the existing code is fully functional, unit-tested and I think I have a fairly decent mental roadmap of how to proceed from now on.
+
+Where is it going, and how can you help, you ask?
+
+Up to now I've been focused on designing and implementing the individual analysis tools/ task modules that are going to constitute the workflows. This is an ongoing task but I have a fairly good handle on what needs to be done, and there's nothing I can think of delegating in the immediate future. Maybe once I write proper specs/requirements for each planned tool it might be possible to open that up for contributions.
+
+However at a basic level, something that would already be very useful would be to go through the completed code units and suggest more efficient, elegant or otherwise more harmoniously pythonic ways to code unit functions as applicable. Also, my unit tests are fairly primitive and could probably be optimized. One problem is that I haven't yet figured out how to use mocks, so I write a lot of stubs and sometimes don't test every single parameter option. I'd love to get some critical advice on how to improve that. Note that I have not yet had any changes contributed by someone else, so I don't have any preferences as to the format/ method. I'd actually be very interested in learning about the rationale for the various available options (diff/patch is what I've heard of?).
+
+On a larger scale, the most challenging part of the project for me right now is that I need to make some decisions about what general framework/ workflow management/ UI components to use to wrap the "analysis logic" in. People have thrown around lots of recommendations for components, but I haven't had the time to learn what I need to make an informed decision. It would be fantastic if someone were to propose an integrated solution that covers all the "wrapping" aspects so I could carry on just worrying about writing the tools and workflows themselves. I actually have a prospective collaborator who may be interested in taking charge of that part, so that may be solved in the near future, but I'm always happy to hear from diverse points of view.
+
+The next thing I foresee being a challenge is actually implementing the framework, whatever it turns out to be. Then wrapping up the first set of individual tools & task modules in the code to use them as components of the framework, running some test workflows, and checking that they behave as expected. Also, at that point I would like to get at least a fairly simple GUI in place to control the inputs/execution/output storage. I've already got the basics of the static output graphical component worked out, although that's not in the repository yet because I need to adapt it from a previous (disastrously inflexible) implementation.
+
+After that it will be a question of extending the set of tools to enable more types of analysis, including some more elaborate ones I have in mind that may require some graph analysis computation, which right now I don't know how to do. And adding interactive data exploration capability.
+
+So you see, there's plenty to do and all offers of help, advice, feedback and beer are welcome. Actually, I may offer beer as a reward. Or academic paper co-authorship if you're into that (I'm guessing that most non-academics will prefer beer). 
+
+I look forward to hearing from you!
 
 --gglobster
